@@ -1,0 +1,124 @@
+.admin-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0 30px;
+}
+.admin-nav a {
+  padding: 8px 16px;
+  background: #ecf0f1;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #2c3e50;
+  font-size: 0.9rem;
+}
+.admin-nav a:hover {
+  background: #dfe4e6;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  margin-top: 16px;
+}
+.admin-table th,
+.admin-table td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid #e1e4e8;
+  font-size: 0.9rem;
+}
+.admin-table th {
+  background: #f5f6fa;
+}
+
+.admin-form {
+  background: #fff;
+  border: 1px solid #e1e4e8;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 24px;
+  max-width: 520px;
+}
+.admin-form label {
+  display: block;
+  margin-top: 12px;
+  margin-bottom: 4px;
+  font-size: 0.9rem;
+}
+.admin-form input:not([type="radio"]):not([type="checkbox"]),
+.admin-form select,
+.admin-form textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #d0d3d4;
+  border-radius: 6px;
+  font-family: inherit;
+}
+.admin-form-actions {
+  margin-top: 16px;
+  display: flex;
+  gap: 10px;
+}
+
+.icon-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  margin-right: 8px;
+}
+.icon-btn.edit {
+  color: #2980b9;
+}
+.icon-btn.delete {
+  color: #c0392b;
+}
+
+.stat-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+.stat-card {
+  background: #fff;
+  border: 1px solid #e1e4e8;
+  border-radius: 8px;
+  padding: 18px;
+  text-align: center;
+}
+.stat-card .stat-number {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2980b9;
+}
+
+.question-block {
+  border: 1px solid #e1e4e8;
+  border-radius: 6px;
+  padding: 12px;
+  margin-top: 12px;
+}
+.question-block .option-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+.question-block .option-row input[type="radio"] {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+}
+.question-block .option-row input[type="text"] {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.question-block .option-label {
+  flex: 0 0 auto;
+  font-size: 0.85rem;
+  color: #7f8c8d;
+  width: 60px;
+}

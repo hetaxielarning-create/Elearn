@@ -1,0 +1,25 @@
+.quiz-form {
+  margin-top: 20px;
+}
+.quiz-question {
+  background: #fff;
+  border: 1px solid #e1e4e8;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.question-text {
+  font-weight: 600;
+}
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+.quiz-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: normal;
+}

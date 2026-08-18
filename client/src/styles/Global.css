@@ -1,0 +1,151 @@
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.app-main {
+  min-height: calc(100vh - 120px);
+}
+
+.footer {
+  text-align: center;
+  padding: 16px;
+  color: #7f8c8d;
+  font-size: 0.85rem;
+  border-top: 1px solid #e1e4e8;
+  background: #fff;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  text-decoration: none;
+  text-align: center;
+}
+
+.btn-primary {
+  background-color: #2980b9;
+  color: #fff;
+}
+.btn-primary:hover {
+  background-color: #1f6391;
+}
+
+.btn-secondary {
+  background-color: #ecf0f1;
+  color: #2c3e50;
+  border: 1px solid #d0d3d4;
+}
+.btn-secondary:hover {
+  background-color: #dfe4e6;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #e1e4e8;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 16px;
+}
+
+.muted {
+  color: #7f8c8d;
+}
+
+.form-error {
+  background: #fdecea;
+  color: #c0392b;
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.section-heading {
+  margin-top: 32px;
+}
+
+.link-more {
+  display: inline-block;
+  margin-top: 8px;
+  color: #2980b9;
+  text-decoration: none;
+}
+
+.progress-bar-track {
+  background: #ecf0f1;
+  border-radius: 6px;
+  height: 10px;
+  overflow: hidden;
+  margin: 8px 0;
+}
+.progress-bar-fill {
+  background: #27ae60;
+  height: 100%;
+}
+
+.home-hero {
+  text-align: center;
+  padding: 48px 16px;
+}
+.home-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin: 20px 0 40px;
+}
+.home-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  text-align: left;
+  max-width: 800px;
+  margin: 0 auto;
+}
+.step {
+  background: #fff;
+  border: 1px solid #e1e4e8;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.badge {
+  display: inline-block;
+  background: #ecf0f1;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  margin-bottom: 6px;
+}
+
+.search-input {
+  width: 100%;
+  max-width: 320px;
+  padding: 10px;
+  margin: 16px 0;
+  border: 1px solid #d0d3d4;
+  border-radius: 6px;
+}
+
+.dashboard-cta {
+  text-align: center;
+  margin-top: 32px;
+}
+
+.page-loading {
+  text-align: center;
+  padding: 40px;
+}
+.material-content {
+  white-space: pre-wrap;
+}

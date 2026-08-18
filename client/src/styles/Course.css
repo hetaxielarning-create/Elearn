@@ -1,0 +1,70 @@
+.course-card h3 {
+  margin-top: 0;
+}
+
+/* Collapsible chapter blocks — replaces the old "everything expanded in
+   one long column" layout with an accordion so long courses stay scannable. */
+.chapter-block {
+  background: #fff;
+  border: 1px solid #e1e4e8;
+  border-radius: 8px;
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+.chapter-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8f9fb;
+  border: none;
+  padding: 14px 18px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #2c3e50;
+  cursor: pointer;
+  text-align: left;
+}
+.chapter-header:hover {
+  background: #eef1f4;
+}
+.chapter-toggle {
+  font-size: 0.8rem;
+  font-weight: normal;
+  color: #7f8c8d;
+}
+.chapter-body {
+  padding: 16px 18px;
+}
+
+.topic-block {
+  background: #fafbfc;
+  border: 1px solid #eef0f2;
+  border-left: 4px solid #2980b9;
+  border-radius: 6px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+}
+
+.subtopic-list {
+  margin-top: 10px;
+}
+.subtopic-block {
+  background: #fff;
+  border: 1px solid #eef0f2;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-top: 6px;
+}
+
+.materials-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+.materials-list .card {
+  width: 100%;
+  box-sizing: border-box;
+}
