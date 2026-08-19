@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
-
-// Each document = one IF-THEN rule: IF percentage falls in [minScore, maxScore] THEN recommend `level` materials
+// Each rule recommends a level based on the student's score
 const recommendationRuleSchema = new mongoose.Schema(
   {
     minScore: { type: Number, required: true }, // inclusive lower bound (%)

@@ -1,9 +1,7 @@
 import axios from "axios";
 import { API_BASE_URL, TOKEN_KEY } from "../utils/constants";
 
-// ---------------------------------------------------------------------------
-// Axios instance
-// ---------------------------------------------------------------------------
+// Axios setup
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: { "Content-Type": "application/json" },
@@ -29,17 +27,15 @@ api.interceptors.response.use(
   }
 );
 
-// ---------------------------------------------------------------------------
-// Endpoints below are matched exactly to your uploaded controllers.
-// ---------------------------------------------------------------------------
+// API endpoints
 
-// ---------- Auth ----------
-// One login endpoint for both roles — backend returns { role: 'student' | 'admin', ... }
+// Auth
+// One login endpoint for all user roles
 export const registerStudent = (data) => api.post("/auth/register", data);
 export const login = (data) => api.post("/auth/login", data);
 export const getMe = () => api.get("/auth/me");
 
-// ---------- Courses ----------
+// Courses
 export const getCourses = (search) =>
   api.get("/courses", { params: search ? { search } : {} });
 export const getCourseById = (id) => api.get(`/courses/${id}`);
@@ -47,25 +43,20 @@ export const createCourse = (data) => api.post("/courses", data);
 export const updateCourse = (id, data) => api.put(`/courses/${id}`, data);
 export const deleteCourse = (id) => api.delete(`/courses/${id}`);
 
-// ---------- Learning Materials ----------
-// content is a plain text/link field on the model (not a file upload yet)
+// Learning Materials
+// Content can be text or a link
 export const getMaterialsByCourse = (courseId, level) =>
   api.get(`/materials/course/${courseId}`, { params: level ? { level } : {} });
-// MODIFIED: now sends multipart/form-data so an optional file upload can
-// travel alongside the text fields. Build the FormData from the calling
-// page — course/title/type/level always as strings, "file" only if the
-// instructor/admin chose to upload one instead of pasting a link.
-// FIXED: don't manually set Content-Type here — when the body is a
-// FormData object, the browser must set this header itself (it includes a
-// unique multipart "boundary" value that can't be set by hand). Forcing
-// the header ourselves risks a malformed multipart request that the
-// server's multer middleware can silently fail to parse correctly.
+
+
+// MODIFIED: Supports optional file uploads with form data
+// The browser sets the Content-Type header automatically
 export const createMaterial = (formData) => api.post("/materials", formData);
 export const updateMaterial = (id, formData) =>
   api.put(`/materials/${id}`, formData);
 export const deleteMaterial = (id) => api.delete(`/materials/${id}`);
 
-// ---------- Quizzes ----------
+//Quizzes 
 export const getQuizzesByCourse = (courseId) =>
   api.get(`/quizzes/course/${courseId}`);
 export const getQuizById = (id) => api.get(`/quizzes/${id}`);
@@ -77,8 +68,8 @@ export const createQuiz = (data) => api.post("/quizzes", data);
 export const updateQuiz = (id, data) => api.put(`/quizzes/${id}`, data);
 export const deleteQuiz = (id) => api.delete(`/quizzes/${id}`);
 
-// ---------- Recommendations ----------
-// Latest recommendation for the logged-in student, for a given course
+// Recommendations
+// Get the student's latest recommendation for a course
 export const getRecommendationForCourse = (courseId) =>
   api.get(`/recommendations/course/${courseId}`);
 export const getRules = () => api.get("/recommendations/rules");
@@ -87,21 +78,21 @@ export const updateRule = (id, data) =>
   api.put(`/recommendations/rules/${id}`, data);
 export const deleteRule = (id) => api.delete(`/recommendations/rules/${id}`);
 
-// ---------- Progress ----------
+//Progress 
 export const getMyProgress = () => api.get("/progress/me");
 
-// ---------- Profile ----------
+//Profile 
 export const updateProfile = (data) => api.put("/auth/profile", data);
 export const changePassword = (data) => api.put("/auth/change-password", data);
 
-// ---------- Enrollment ----------
+//Enrollment 
 export const enrollInCourse = (courseId) =>
   api.post(`/enrollments/${courseId}`);
 export const getMyEnrollments = () => api.get("/enrollments/my");
 export const checkEnrollment = (courseId) =>
   api.get(`/enrollments/course/${courseId}/check`);
 
-// ---------- Chapters / Topics / Subtopics ----------
+// Chapters / Topics / Subtopics 
 export const getChaptersByCourse = (courseId) =>
   api.get(`/chapters/course/${courseId}`);
 export const createChapter = (data) => api.post("/chapters", data);
@@ -127,20 +118,20 @@ export const deleteSubtopic = (chapterId, topicId, subtopicId) =>
     `/chapters/${chapterId}/topics/${topicId}/subtopics/${subtopicId}`
   );
 
-// ---------- Instructor (scoped to their own courses) ----------
+// Instructor (scoped to their own courses)
 export const getMyCourses = () => api.get("/instructor/courses");
 export const getInstructorCourseResults = (courseId) =>
   api.get(`/instructor/courses/${courseId}/results`);
 export const getInstructorCourseProgress = (courseId) =>
   api.get(`/instructor/courses/${courseId}/progress`);
 
-// ---------- Categories ----------
+// Categories
 export const getCategories = () => api.get("/categories");
 export const createCategory = (data) => api.post("/categories", data);
 export const updateCategory = (id, data) => api.put(`/categories/${id}`, data);
 export const deleteCategory = (id) => api.delete(`/categories/${id}`);
 
-// ---------- Certificates ----------
+// Certificates
 export const issueCertificate = (courseId) =>
   api.post(`/certificates/course/${courseId}`);
 export const getMyCertificates = () => api.get("/certificates/my");
@@ -149,7 +140,7 @@ export const getAllCertificates = () => api.get("/certificates");
 export const downloadCertificate = (id) =>
   api.get(`/certificates/${id}/download`, { responseType: "blob" });
 
-// ---------- Notifications / Announcements ----------
+//Notifications / Announcements 
 export const getMyNotifications = () => api.get("/notifications/my");
 export const getAllNotifications = () => api.get("/notifications");
 export const createNotification = (data) => api.post("/notifications", data);
@@ -158,10 +149,10 @@ export const updateNotification = (id, data) =>
 export const deleteNotification = (id) =>
   api.delete(`/notifications/${id}`);
 
-// ---------- Analytics ----------
+//Analytics 
 export const getAnalyticsOverview = () => api.get("/analytics/overview");
 
-// ---------- Admin ----------
+//Admin 
 export const getStudents = () => api.get("/admin/students");
 export const deleteStudent = (id) => api.delete(`/admin/students/${id}`);
 export const getInstructors = () => api.get("/admin/instructors");

@@ -11,8 +11,7 @@ import "../styles/Admin.css";
 
 const emptyForm = { minScore: "", maxScore: "", level: "beginner", message: "" };
 
-// Manages the IF-THEN rules that power the recommendation engine:
-// IF percentage is between minScore and maxScore THEN recommend `level`.
+// Manage recommendation rules based on the student's score
 export default function ManageRules() {
   const [rules, setRules] = useState([]);
   const [form, setForm] = useState(emptyForm);

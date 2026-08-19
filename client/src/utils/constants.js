@@ -1,5 +1,5 @@
-// Central place for constant values used across the app.
-// Change API_BASE_URL to match your deployed/local backend.
+// App constants
+// Set the API URL for your backend
 
 export const API_BASE_URL =
   process.env.REACT_APP_API_URL || "http://localhost:5000/api";
@@ -7,8 +7,7 @@ export const API_BASE_URL =
 export const TOKEN_KEY = "elearn_token";
 export const USER_KEY = "elearn_user";
 
-// Matches the `level` enum on LearningMaterial / Progress / QuizResult /
-// RecommendationRule models exactly — backend stores these lowercase.
+// Matches the learning levels used in the backend
 export const LEVELS = {
   BEGINNER: "beginner",
   INTERMEDIATE: "intermediate",

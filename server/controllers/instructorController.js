@@ -2,14 +2,13 @@ const Course = require('../models/Course');
 const QuizResult = require('../models/QuizResult');
 const Progress = require('../models/Progress');
 
-// @route GET /api/instructor/courses  - only courses this instructor created
+// Show only courses created by this instructor
 const getMyCourses = async (req, res) => {
   const courses = await Course.find({ createdBy: req.user._id }).sort({ createdAt: -1 });
   res.json(courses);
 };
 
-// @route GET /api/instructor/courses/:id/results
-// Ownership check: only the instructor who created the course (or an admin) can view its results.
+// Only the course instructor or admin can view the results
 const getCourseResults = async (req, res) => {
   const course = await Course.findById(req.params.id);
   if (!course) return res.status(404).json({ message: 'Course not found' });
@@ -25,7 +24,6 @@ const getCourseResults = async (req, res) => {
   res.json(results);
 };
 
-// @route GET /api/instructor/courses/:id/progress
 const getCourseProgress = async (req, res) => {
   const course = await Course.findById(req.params.id);
   if (!course) return res.status(404).json({ message: 'Course not found' });

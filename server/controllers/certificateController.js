@@ -13,9 +13,8 @@ function generateCertificateId() {
 }
 
 // @route POST /api/certificates/course/:courseId
-// A student can only claim a certificate once their tracked progress for
-// that course has reached the 'advanced' level (mirrors the dissertation's
-// rule-based logic: score > 70% -> advanced -> course considered mastered).
+// Students can get a certificate after reaching the advanced level
+// (score above 70%).
 const issueCertificate = async (req, res) => {
   try {
     const { courseId } = req.params;
@@ -73,30 +72,8 @@ const issueCertificate = async (req, res) => {
   }
 };
 
-// const issueCertificate = async (req, res) => {
-//   try {
-//     const { courseId } = req.params;
 
-//     const existing = await Certificate.findOne({ student: req.user._id, course: courseId });
-//     if (existing) {
-//       return res.status(200).json(existing); // idempotent - just return the one they already have
-//     }
-
-   
-
-//     const certificate = await Certificate.create({
-//       student: req.user._id,
-//       course: courseId,
-//       certificateId: generateCertificateId(),
-//     });
-
-//     res.status(201).json(certificate);
-//   } catch (err) {
-//     res.status(500).json({ message: err.message });
-//   }
-// };
-
-// @route GET /api/certificates/my
+// @route GET /api/certificates/my // Get the student's certificates
 const getMyCertificates = async (req, res) => {
   const certificates = await Certificate.find({ student: req.user._id })
     .populate('course', 'title')
@@ -104,7 +81,8 @@ const getMyCertificates = async (req, res) => {
   res.json(certificates);
 };
 
-// @route GET /api/certificates  (admin - all issued certificates)
+// @route GET /api/certificates  (admin only)
+// Get all issued certificates
 const getAllCertificates = async (req, res) => {
   const certificates = await Certificate.find()
     .populate('student', 'name email')
@@ -112,9 +90,8 @@ const getAllCertificates = async (req, res) => {
     .sort({ issuedAt: -1 });
   res.json(certificates);
 };
-
 // @route GET /api/certificates/:id/download
-// Streams a generated PDF. Only the certificate's owner or an admin can download it.
+// Download the certificate as a PDF (student owner or admin only)
 const downloadCertificate = async (req, res) => {
   const certificate = await Certificate.findById(req.params.id)
     .populate('course', 'title')

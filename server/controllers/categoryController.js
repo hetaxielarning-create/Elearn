@@ -1,12 +1,12 @@
 const Category = require('../models/Category');
 
-// @route GET /api/categories
 const getCategories = async (req, res) => {
   const categories = await Category.find().sort({ name: 1 });
   res.json(categories);
 };
 
-// @route POST /api/categories  (admin only)  body: { name, description }
+// Create a new category
+
 const createCategory = async (req, res) => {
   try {
     const { name, description } = req.body;

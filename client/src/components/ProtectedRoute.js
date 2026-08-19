@@ -2,9 +2,10 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
-// Wrap any page element with this to require login.
-// adminOnly: only admins may pass.
-// instructorOnly: instructors OR admins may pass (admins can see everything).
+// Require users to log in before accessing the page
+// adminOnly: Admins only
+// instructorOnly: Instructors and admins only
+
 export default function ProtectedRoute({
   children,
   adminOnly = false,

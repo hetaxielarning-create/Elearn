@@ -42,7 +42,7 @@ export default function Home() {
 
       <div className="home-steps">
         <div className="step">
-          <h3>🎓 Student</h3>
+          <h3>Student</h3>
           <p>
             Register freely. Browse and enroll in courses, work through
             materials, attempt quizzes, and get personalised recommendations,
@@ -53,7 +53,7 @@ export default function Home() {
           </Link>
         </div>
         <div className="step">
-          <h3>👩‍🏫 Instructor</h3>
+          <h3> Instructor</h3>
           <p>
             Instructor accounts are created by the platform administrator —
             there's no public instructor sign-up. Once provisioned,
@@ -65,7 +65,7 @@ export default function Home() {
           </Link>
         </div>
         <div className="step">
-          <h3>🛠️ Admin</h3>
+          <h3>Admin</h3>
           <p>
             A single fixed administrator account oversees the whole
             platform — managing students, instructors, categories, courses,

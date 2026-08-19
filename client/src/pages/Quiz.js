@@ -4,9 +4,7 @@ import { getQuizById, submitQuiz } from "../services/api";
 import { getErrorMessage, capitalize } from "../utils/helpers";
 import "../styles/Quiz.css";
 
-// A quiz counts as "passed" once the score reaches the intermediate band
-// (40%+) — matching the dissertation's own rule thresholds, rather than
-// inventing a separate pass mark.
+// A quiz is passed with a score of 40% or higher
 const PASS_THRESHOLD = 40;
 
 export default function Quiz() {

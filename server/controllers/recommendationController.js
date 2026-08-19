@@ -2,7 +2,7 @@ const RecommendationRule = require('../models/RecommendationRule');
 const QuizResult = require('../models/QuizResult');
 const { getRecommendation } = require('../utils/recommendationEngine');
 
-// @route GET /api/recommendations/course/:courseId  - latest recommendation for logged-in student
+// Get the student's latest course recommendation
 const getMyRecommendationForCourse = async (req, res) => {
   const latest = await QuizResult.findOne({ student: req.user._id, course: req.params.courseId }).sort({
     createdAt: -1,

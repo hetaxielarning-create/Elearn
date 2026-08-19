@@ -30,9 +30,9 @@ export function AuthProvider({ children }) {
     localStorage.setItem(USER_KEY, JSON.stringify(userData));
     setUser(userData);
   }
+// Works for students and admins
+// The login API returns the user's role
 
-  // Works for both student and admin — the backend's single /auth/login
-  // route returns whichever role the account has.
   async function login(credentials) {
     try {
       const res = await loginApi(credentials);
@@ -58,9 +58,8 @@ export function AuthProvider({ children }) {
     localStorage.removeItem(USER_KEY);
     setUser(null);
   }
-
-  // Used by Profile.js after a successful profile update, so the
-  // navbar/name shown elsewhere stays in sync without a full re-login.
+// Updates the user's details after a profile change
+// without requiring them to log in again
   function refreshUser(updatedFields) {
     setUser((prev) => {
       const next = { ...prev, ...updatedFields };

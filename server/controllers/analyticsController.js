@@ -20,7 +20,8 @@ const getOverview = async (req, res) => {
   ]);
   const averageScore = avgAgg.length > 0 ? Math.round(avgAgg[0].avgPercentage) : 0;
 
-  // How many results landed at each recommended level (mirrors the IF-THEN rule outcomes)
+// Number of results for each recommended level
+  
   const levelAgg = await QuizResult.aggregate([
     { $group: { _id: '$recommendedLevel', count: { $sum: 1 } } },
   ]);
@@ -31,7 +32,8 @@ const getOverview = async (req, res) => {
     }
   });
 
-  // Most-attempted courses
+// Courses with the most attempts
+// 
   const topCoursesAgg = await QuizResult.aggregate([
     { $group: { _id: '$course', attempts: { $sum: 1 } } },
     { $sort: { attempts: -1 } },

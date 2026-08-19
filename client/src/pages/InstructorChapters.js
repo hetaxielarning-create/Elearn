@@ -16,10 +16,9 @@ import {
 import { getErrorMessage } from "../utils/helpers";
 import "../styles/Admin.css";
 
-// Reorganized around the requested hierarchy: Course -> Chapter -> Topic ->
-// Subtopic, with the currently selected Course/Chapter shown as a
-// breadcrumb so it's always clear what you're adding to. Every level now
-// has Add, Edit, and Delete (previously only Add + Delete existed).
+// Organizes content as Course -> Chapter -> Topic -> Subtopic
+// Shows the selected course and chapter
+// Each level can be added, edited, and deleted
 export default function InstructorChapters() {
   const [courses, setCourses] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState("");
@@ -291,7 +290,7 @@ export default function InstructorChapters() {
                   </div>
                 ) : (
                   <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                    <strong>📄 {topic.title}</strong>
+                    <strong>{topic.title}</strong>
                     <div>
                       <button className="icon-btn edit" onClick={() => startEditTopic(chapter._id, topic)}>
                         Edit

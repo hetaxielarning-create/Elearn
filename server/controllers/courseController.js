@@ -1,6 +1,6 @@
 const Course = require('../models/Course');
 
-// MODIFIED: supports ?search=keyword (matches title, case-insensitive)
+// MODIFIED: Search courses by title using a keyword
 const getCourses = async (req, res) => {
   const filter = {};
   if (req.query.search) {

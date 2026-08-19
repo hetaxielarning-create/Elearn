@@ -12,9 +12,8 @@ import "../styles/Admin.css";
 
 const emptyForm = { title: "", description: "", category: "" };
 
-// Same pattern as the admin ManageCourses page, but scoped to courses this
-// instructor created — createCourse on the backend stamps createdBy from
-// the logged-in user automatically, so no extra wiring needed here.
+// Same as the admin course page, but only shows courses created by this instructor
+
 export default function InstructorCourses() {
   const [courses, setCourses] = useState([]);
   const [categories, setCategories] = useState([]);

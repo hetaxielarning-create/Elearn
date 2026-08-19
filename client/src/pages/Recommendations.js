@@ -6,9 +6,8 @@ import { getErrorMessage } from "../utils/helpers";
 import "../styles/Dashboard.css";
 
 
-// Recommendations are per-course (backend: GET /recommendations/course/:courseId),
-// so this page lets the student pick a course they've attempted a quiz in
-// and shows the latest rule-based recommendation for it.
+// Shows the latest recommendation for a course
+// after the student has attempted a quiz
 export default function Recommendations() {
   const location = useLocation();
   const courseIdFromQuiz = location.state?.courseId;

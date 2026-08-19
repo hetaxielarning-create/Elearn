@@ -1,6 +1,6 @@
 const Notification = require('../models/Notification');
 
-// @route GET /api/notifications/my  - filtered to the logged-in user's role
+//  filtered to the logged-in user's role
 const getMyNotifications = async (req, res) => {
   const audienceFilter =
     req.user.role === 'student'
@@ -15,13 +15,13 @@ const getMyNotifications = async (req, res) => {
   res.json(notifications);
 };
 
-// @route GET /api/notifications  (admin - manage all)
+// Get all notifications
 const getAllNotifications = async (req, res) => {
   const notifications = await Notification.find().sort({ createdAt: -1 });
   res.json(notifications);
 };
 
-// @route POST /api/notifications  (admin only)  body: { title, message, audience }
+// Create a new notification
 const createNotification = async (req, res) => {
   try {
     const { title, message, audience } = req.body;

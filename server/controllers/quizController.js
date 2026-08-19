@@ -19,7 +19,7 @@ const getQuizById = async (req, res) => {
   res.json(quiz);
 };
 
-// MODIFIED: accepts optional level/chapter/topicId alongside the existing fields.
+// MODIFIED: Added optional level, chapter, and topic IDs
 const createQuiz = async (req, res) => {
   try {
     const { course, title, questions, level, chapter, topicId } = req.body;
@@ -94,9 +94,9 @@ const submitQuiz = async (req, res) => {
       { upsert: true, new: true }
     );
 
-    // NEW: include the quiz's own level and topic context in the response
-    // so the frontend can build the "Quiz Passed -> Recommended Next
-    // Level" messaging without a second round trip.
+    // NEW: Include the quiz level and topic details
+// so the frontend can show the recommended next level
+
     res.status(201).json({
       result,
       recommendation: { level, message, materials },

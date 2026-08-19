@@ -1,6 +1,5 @@
 const Enrollment = require('../models/Enrollment');
 
-// @route POST /api/enrollments/:courseId
 const enrollInCourse = async (req, res) => {
   try {
     const existing = await Enrollment.findOne({
@@ -21,7 +20,6 @@ const enrollInCourse = async (req, res) => {
   }
 };
 
-// @route GET /api/enrollments/my
 const getMyEnrollments = async (req, res) => {
   const enrollments = await Enrollment.find({ student: req.user._id }).populate(
     'course',
@@ -30,7 +28,6 @@ const getMyEnrollments = async (req, res) => {
   res.json(enrollments);
 };
 
-// @route GET /api/enrollments/course/:courseId/check
 const checkEnrollment = async (req, res) => {
   const enrollment = await Enrollment.findOne({
     student: req.user._id,

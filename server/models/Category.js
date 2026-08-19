@@ -1,8 +1,6 @@
 const mongoose = require('mongoose');
-
-// A controlled vocabulary of course categories, managed by admin.
-// Course.category stays a free-text string (unchanged, so nothing breaks) —
-// this just gives admin a dropdown of standard options to keep it tidy.
+// Admin manages a list of standard course categories
+// Course category remains a text field to avoid breaking existing data
 const categorySchema = new mongoose.Schema(
   {
     name: { type: String, required: true, unique: true, trim: true },

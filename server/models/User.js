@@ -6,9 +6,10 @@ const userSchema = new mongoose.Schema(
     name: { type: String, required: true, trim: true },
     email: { type: String, required: true, unique: true, lowercase: true, trim: true },
     password: { type: String, required: true },
-    // MODIFIED: added 'instructor' to the enum
+    // Added instructor role
+
     role: { type: String, enum: ['student', 'instructor', 'admin'], default: 'student' },
-    // NEW: used by "Activate/deactivate users" (Part 3), but harmless to add now
+// NEW: Used to activate or deactivate users    
     isActive: { type: Boolean, default: true },
   },
   { timestamps: true }

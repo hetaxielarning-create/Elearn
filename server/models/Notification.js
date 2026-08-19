@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
-
-// Simple broadcast-style announcements — no per-user read/unread tracking,
-// keeps scope reasonable for the dissertation timeline.
+// Simple announcements for users without read/unread tracking
 const notificationSchema = new mongoose.Schema(
   {
     title: { type: String, required: true },

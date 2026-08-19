@@ -1,7 +1,7 @@
 const Chapter = require('../models/Chapter');
 const Course = require('../models/Course');
 
-// Helper: only the course owner (instructor) or an admin may modify chapters
+// Only the course instructor or admin can change chapters
 async function assertOwnership(courseId, user) {
   const course = await Course.findById(courseId);
   if (!course) return { ok: false, status: 404, message: 'Course not found' };
@@ -11,13 +11,13 @@ async function assertOwnership(courseId, user) {
   return { ok: true, course };
 }
 
-// @route GET /api/chapters/course/:courseId  - list chapters (with topics/subtopics) for a course
+// @route GET /api/chapters/course/:courseId - Get all chapters, topics, and subtopics
 const getChaptersByCourse = async (req, res) => {
   const chapters = await Chapter.find({ course: req.params.courseId }).sort({ order: 1 });
   res.json(chapters);
 };
 
-// @route POST /api/chapters  body: { course, title, order }
+// @route POST /api/chapters - Create a new chapter
 const createChapter = async (req, res) => {
   try {
     const { course, title, order } = req.body;
@@ -59,7 +59,7 @@ const deleteChapter = async (req, res) => {
   res.json({ message: 'Chapter deleted' });
 };
 
-// @route POST /api/chapters/:chapterId/topics  body: { title, order }
+// @route POST /api/chapters/:chapterId/topics - Add a topic
 const addTopic = async (req, res) => {
   try {
     const chapter = await Chapter.findById(req.params.chapterId);
@@ -104,7 +104,7 @@ const deleteTopic = async (req, res) => {
   res.json({ message: 'Topic deleted' });
 };
 
-// @route POST /api/chapters/:chapterId/topics/:topicId/subtopics  body: { title, content, order }
+// @route POST /api/chapters/:chapterId/topics/:topicId/subtopics - Add a subtopic
 const addSubtopic = async (req, res) => {
   const chapter = await Chapter.findById(req.params.chapterId);
   if (!chapter) return res.status(404).json({ message: 'Chapter not found' });

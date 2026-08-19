@@ -23,7 +23,7 @@ export default function Courses() {
       }
     }
 
-    // Debounce so we don't hit the backend on every keystroke
+// Wait briefly before searching to reduce API requests
     const timeout = setTimeout(loadCourses, 300);
     return () => clearTimeout(timeout);
   }, [search]);

@@ -9,8 +9,7 @@ const getStudents = async (req, res) => {
   res.json(students);
 };
 
-// MODIFIED: now cascades — deleting a student also removes their quiz
-// results, progress records, enrollments, and certificates. Previously
+// MODIFIED: Deleting a student now also deletes their quiz results,// results, progress records, enrollments, and certificates. Previously
 // only the User document was removed, leaving orphaned data behind.
 const deleteStudent = async (req, res) => {
   const user = await User.findOneAndDelete({ _id: req.params.id, role: 'student' });

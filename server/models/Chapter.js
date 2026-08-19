@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
-// Subtopic and Topic are embedded subdocuments — same pattern your
-// Quiz model already uses for embedding questions.
+// Topics and subtopics are stored inside the chapter document
 const subtopicSchema = new mongoose.Schema({
   title: { type: String, required: true },
   content: { type: String }, // text content, or a link

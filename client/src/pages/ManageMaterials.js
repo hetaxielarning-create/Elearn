@@ -80,9 +80,7 @@ export default function ManageMaterials() {
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
-
-  // Changing the chapter resets topic/subtopic, since they belong to
-  // whichever chapter was previously selected.
+// Reset the topic and subtopic when the chapter changes
   function handleChapterChange(e) {
     setForm({ ...form, chapter: e.target.value, topicId: "", subtopicId: "" });
   }

@@ -1,8 +1,7 @@
 const LearningMaterial = require('../models/LearningMaterial');
 
-// MODIFIED: now also accepts optional ?topicId= and ?subtopicId= filters,
-// on top of the existing ?level= filter — used by the student course page
-// to fetch materials scoped to one specific topic/subtopic.
+// MODIFIED: Added topic, subtopic, and level filters
+// to find specific course materials
 const getMaterialsByCourse = async (req, res) => {
   const filter = { course: req.params.courseId };
   if (req.query.level) filter.level = req.query.level;
@@ -12,8 +11,7 @@ const getMaterialsByCourse = async (req, res) => {
   res.json(materials);
 };
 
-// MODIFIED: accepts optional chapter/topicId/subtopicId alongside a file
-// upload, same as before.
+// MODIFIED: File upload can also include chapter, topic, and subtopic IDs
 const createMaterial = async (req, res) => {
   try {
     const { course, title, type, level, chapter, topicId, subtopicId } = req.body;
@@ -49,8 +47,7 @@ const updateMaterial = async (req, res) => {
     if (req.file) {
       updates.content = `/uploads/${req.file.filename}`;
     }
-    // Empty string from a cleared dropdown should unset the field, not
-    // save literal "" as an ObjectId (which would throw a cast error).
+    // Clear the field when the dropdown is empty to avoid an ObjectId error
     ['chapter', 'topicId', 'subtopicId'].forEach((key) => {
       if (updates[key] === '') updates[key] = undefined;
     });

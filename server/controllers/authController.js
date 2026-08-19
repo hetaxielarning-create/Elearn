@@ -5,7 +5,7 @@ const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '7d' });
 };
 
-// @route POST /api/auth/register  (students only - admin is seeded, not registered)
+// @route POST /api/auth/register (students only - admin account is already created)
 const registerStudent = async (req, res) => {
   try {
     const { name, email, password } = req.body;
@@ -32,7 +32,7 @@ const registerStudent = async (req, res) => {
   }
 };
 
-// @route POST /api/auth/login  (works for student, instructor, and admin)
+// @route POST /api/auth/login (for students, instructors, and admins)
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -42,7 +42,7 @@ const login = async (req, res) => {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
-    // NEW: block deactivated accounts (isActive added to User model)
+// NEW: Block users with deactivated accounts    
     if (user.isActive === false) {
       return res.status(403).json({ message: 'This account has been deactivated' });
     }
@@ -64,7 +64,7 @@ const getMe = async (req, res) => {
   res.json(req.user);
 };
 
-// NEW - @route PUT /api/auth/profile  body: { name, email }
+// NEW: Update user name and email
 const updateProfile = async (req, res) => {
   try {
     const { name, email } = req.body;
@@ -92,7 +92,7 @@ const updateProfile = async (req, res) => {
   }
 };
 
-// NEW - @route PUT /api/auth/change-password  body: { currentPassword, newPassword }
+// NEW: Change user password
 const changePassword = async (req, res) => {
   try {
     const { currentPassword, newPassword } = req.body;
